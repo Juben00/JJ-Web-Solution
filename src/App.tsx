@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Sun, Moon, ArrowRight, Star, CheckCircle, Zap } from 'lucide-react';
+import { ArrowRight, Star, CheckCircle, Zap } from 'lucide-react';
 import './App.css';
 
 const companies = [
@@ -32,47 +31,14 @@ const testimonials = [
 ];
 
 export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        return savedTheme === 'dark';
-      }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return true;
-  });
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  const toggleTheme = () => {
-    setIsDarkMode((prev) => {
-      const newTheme = !prev;
-      if (newTheme) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-      return newTheme;
-    });
-  };
-
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-white">
+    <div className="relative min-h-screen w-full overflow-hidden bg-slate-950 text-white">
       {/* Background elements */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-30 dark:opacity-50 transition-opacity duration-300"
+        className="absolute inset-0 bg-cover bg-center opacity-50 transition-opacity duration-300"
         style={{ backgroundImage: 'url(/background.jpg)' }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-100/80 to-slate-50/95 dark:from-slate-950/90 dark:via-slate-900/80 dark:to-slate-950/95 transition-colors duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-900/80 to-slate-950/95 transition-colors duration-300" />
       <div className="absolute inset-0 grid-overlay" />
       <div className="absolute -top-32 -left-32 orb orb-blue" />
       <div className="absolute -bottom-32 -right-32 orb orb-amber" />
@@ -81,38 +47,31 @@ export default function App() {
         {/* Header */}
         <header className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/50 ring-1 ring-slate-200 backdrop-blur dark:bg-white/10 dark:ring-white/20">
-              <div className="text-xl font-bold text-blue-600 dark:text-blue-400">JJ</div>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/20 backdrop-blur">
+              <div className="text-xl font-bold text-blue-400">JJ</div>
             </div>
             <span className="text-lg font-semibold tracking-wide">JJ Web Solutions</span>
           </div>
           <div className="flex items-center gap-8">
-            <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 dark:text-white/80 md:flex">
-              <a className="hover:text-blue-600 dark:hover:text-white transition-colors" href="#services">Services</a>
-              <a className="hover:text-blue-600 dark:hover:text-white transition-colors" href="#work">Work</a>
-              <a className="hover:text-blue-600 dark:hover:text-white transition-colors" href="#testimonials">Reviews</a>
-              <a className="hover:text-blue-600 dark:hover:text-white transition-colors" href="#contact">Contact</a>
+            <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
+              <a className="hover:text-white transition-colors" href="#services">Services</a>
+              <a className="hover:text-white transition-colors" href="#work">Work</a>
+              <a className="hover:text-white transition-colors" href="#testimonials">Reviews</a>
+              <a className="hover:text-white transition-colors" href="#contact">Contact</a>
             </nav>
-            <button
-              onClick={toggleTheme}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 text-slate-700 transition hover:bg-slate-300 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/20"
-              aria-label="Toggle Dark Mode"
-            >
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
           </div>
         </header>
 
         {/* Hero Section */}
         <main className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-16 pt-20 lg:grid-cols-2">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 dark:border-white/20 dark:bg-white/10 dark:text-white/80">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/80">
               Crafted for 2026 launches
             </div>
             <h1 className="text-5xl font-extrabold leading-tight tracking-tight md:text-6xl lg:text-7xl">
-              Design and develop <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300">amazing</span> web solutions.
+              Design and develop <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">amazing</span> web solutions.
             </h1>
-            <p className="mt-6 text-lg text-slate-600 dark:text-white/85 md:text-xl leading-relaxed">
+            <p className="mt-6 text-lg text-white/85 md:text-xl leading-relaxed">
               JJ Web Solutions is a premium digital agency that designs and develops
               cutting-edge web experiences for modern brands. We blend strategy,
               design, and engineering to deliver fast, accessible, and high-converting websites.
@@ -130,8 +89,8 @@ export default function App() {
                   <img key={i} src="/android-chrome-192x192.png" alt="" className='w-10 h-10 rounded-full' />
                 ))}
               </div>
-              <div className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                Join <span className="font-bold text-slate-900 dark:text-white">120+</span> happy clients
+              <div className="text-sm font-medium text-slate-400">
+                Join <span className="font-bold text-white">120+</span> happy clients
               </div>
             </div>
           </div>
@@ -142,36 +101,36 @@ export default function App() {
             </div>
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold">Featured Delivery</h2>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-white/10 dark:text-white/70">Case Study</span>
+              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/70">Case Study</span>
             </div>
-            <p className="mt-4 text-slate-600 dark:text-white/80 leading-relaxed">
+            <p className="mt-4 text-white/80 leading-relaxed">
               A complete brand refresh and ecommerce build that increased conversions by 42%
               while reducing load times to under 1 second.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-slate-200 bg-white/50 p-4 transition hover:bg-white dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
-                <div className="text-sm font-medium text-slate-500 dark:text-white/70">Timeline</div>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10">
+                <div className="text-sm font-medium text-white/70">Timeline</div>
                 <div className="text-lg font-bold">6 weeks</div>
               </div>
-              <div className="rounded-xl border border-slate-200 bg-white/50 p-4 transition hover:bg-white dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
-                <div className="text-sm font-medium text-slate-500 dark:text-white/70">Stack</div>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10">
+                <div className="text-sm font-medium text-white/70">Stack</div>
                 <div className="text-lg font-bold">React + Vite</div>
               </div>
-              <div className="rounded-xl border border-slate-200 bg-white/50 p-4 transition hover:bg-white dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
-                <div className="text-sm font-medium text-slate-500 dark:text-white/70">Services</div>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10">
+                <div className="text-sm font-medium text-white/70">Services</div>
                 <div className="text-lg font-bold">Design, Dev, SEO</div>
               </div>
-              <div className="rounded-xl border border-slate-200 bg-white/50 p-4 transition hover:bg-white dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
-                <div className="text-sm font-medium text-slate-500 dark:text-white/70">Results</div>
-                <div className="text-lg font-bold text-green-600 dark:text-green-400">+42% sales</div>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10">
+                <div className="text-sm font-medium text-white/70">Results</div>
+                <div className="text-lg font-bold text-green-400">+42% sales</div>
               </div>
             </div>
           </div>
         </main>
 
         {/* Trusted By Section */}
-        <section className="mx-auto w-full max-w-6xl px-6 py-10 border-y border-slate-200/50 dark:border-white/10">
-          <p className="text-center text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-8">
+        <section className="mx-auto w-full max-w-6xl px-6 py-10 border-y border-white/10">
+          <p className="text-center text-sm font-semibold uppercase tracking-widest text-slate-400 mb-8">
             Trusted by innovative companies
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-60 grayscale transition hover:grayscale-0">
@@ -187,48 +146,48 @@ export default function App() {
         <section id="services" className="mx-auto max-w-6xl px-6 py-24">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold md:text-4xl">Our Expertise</h2>
-            <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
               We provide end-to-end digital solutions, from conceptual design to scalable engineering and performance optimization.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="glass-card group hover:-translate-y-2 transition-transform duration-300">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/20 text-blue-400">
                 <Star className="h-6 w-6" />
               </div>
               <h3 className="text-xl font-bold">Experience Design</h3>
-              <p className="mt-3 text-slate-600 dark:text-white/80 leading-relaxed">
+              <p className="mt-3 text-white/80 leading-relaxed">
                 Premium UI and UX systems that feel effortless across every device. We create intuitive user journeys that engage and convert.
               </p>
-              <ul className="mt-6 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <ul className="mt-6 space-y-2 text-sm text-slate-400">
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-blue-500" /> UI/UX Design</li>
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-blue-500" /> Wireframing</li>
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-blue-500" /> Prototyping</li>
               </ul>
             </div>
             <div className="glass-card group hover:-translate-y-2 transition-transform duration-300">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-400">
                 <Zap className="h-6 w-6" />
               </div>
               <h3 className="text-xl font-bold">Engineering</h3>
-              <p className="mt-3 text-slate-600 dark:text-white/80 leading-relaxed">
+              <p className="mt-3 text-white/80 leading-relaxed">
                 Scalable front-end and back-end builds with clean, maintainable code using the latest frameworks like React and Node.js.
               </p>
-              <ul className="mt-6 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <ul className="mt-6 space-y-2 text-sm text-slate-400">
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-indigo-500" /> Web Applications</li>
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-indigo-500" /> E-Commerce Systems</li>
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-indigo-500" /> API Development</li>
               </ul>
             </div>
             <div className="glass-card group hover:-translate-y-2 transition-transform duration-300">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-500/20 dark:text-purple-400">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/20 text-purple-400">
                 <CheckCircle className="h-6 w-6" />
               </div>
               <h3 className="text-xl font-bold">Optimization</h3>
-              <p className="mt-3 text-slate-600 dark:text-white/80 leading-relaxed">
+              <p className="mt-3 text-white/80 leading-relaxed">
                 Performance, accessibility, and SEO enhancements that drive organic traffic and ensure lightning-fast load times.
               </p>
-              <ul className="mt-6 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <ul className="mt-6 space-y-2 text-sm text-slate-400">
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-purple-500" /> Core Web Vitals</li>
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-purple-500" /> Technical SEO</li>
                 <li className="flex items-center gap-2"><CheckCircle size={14} className="text-purple-500" /> Accessibility Audits</li>
@@ -241,7 +200,7 @@ export default function App() {
         <section id="testimonials" className="mx-auto max-w-6xl px-6 pb-24">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold md:text-4xl">Client Feedback</h2>
-            <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
               Don't just take our word for it. Here is what our clients have to say about working with us.
             </p>
           </div>
@@ -254,15 +213,15 @@ export default function App() {
                       <Star key={i} size={16} fill="currentColor" />
                     ))}
                   </div>
-                  <p className="text-slate-700 dark:text-white/90 italic mb-6">"{testimonial.content}"</p>
+                  <p className="text-white/90 italic mb-6">"{testimonial.content}"</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-slate-500 dark:text-slate-400">
+                  <div className="h-10 w-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-slate-400">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
                     <div className="font-bold text-sm">{testimonial.name}</div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">{testimonial.role}</div>
+                    <div className="text-xs text-slate-400">{testimonial.role}</div>
                   </div>
                 </div>
               </div>
@@ -272,10 +231,10 @@ export default function App() {
 
         {/* CTA Section */}
         <section id="contact" className="mx-auto max-w-6xl px-6 pb-20">
-          <div className="glass-card flex flex-col items-center gap-8 text-center p-12 lg:p-16 border-blue-200 dark:border-blue-500/30">
+          <div className="glass-card flex flex-col items-center gap-8 text-center p-12 lg:p-16 border-blue-500/30">
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl font-bold">Ready to build something exceptional?</h2>
-              <p className="mt-4 text-lg text-slate-600 dark:text-white/80">
+              <p className="mt-4 text-lg text-white/80">
                 Let's discuss your vision and see how our expertise can help bring it to life. We are currently accepting new projects for Q3.
               </p>
             </div>
@@ -291,8 +250,8 @@ export default function App() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-slate-200 dark:border-white/10 py-8 text-center">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+        <footer className="border-t border-white/10 py-8 text-center">
+          <p className="text-sm text-slate-400">
             &copy; {new Date().getFullYear()} JJ Web Solutions. All rights reserved.
           </p>
         </footer>
